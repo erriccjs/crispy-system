@@ -1,12 +1,10 @@
 package com.myproject.crispysystem.users.model;
 
-import com.myproject.crispysystem.common.util.EncryptionUtil;
-import com.myproject.crispysystem.common.util.HashUtil;
-import com.myproject.crispysystem.common.util.LoggerUtil;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -33,26 +31,14 @@ public class User {
 
     private LocalDateTime deletedAt;
 
-    @Transient
-    private String username;
-
-    @Transient
-    private EncryptionUtil encryptionUtil;//Plaintext username, not stored in the database
-
     public User() {
 
     }
-    public User(EncryptionUtil encryptionUtil) {
-        if (encryptionUtil == null){
-            LoggerUtil.logWarn("EncryptionUtil cannot be null.");
-        }
-        this.encryptionUtil = encryptionUtil;
-    }
 
-    public User(UUID id, String username, String password, EncryptionUtil encryptionUtil) {
-        this(encryptionUtil);
+    public User(UUID id, String encryptedUsername, String hashedUsername, String password) {
         this.id = id;
-        setUsername(username);
+        this.usernameEncrypted = encryptedUsername;
+        this.usernameHashed = hashedUsername;
         this.password = password;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -70,34 +56,6 @@ public class User {
     }
 
     // Getter and Setter for plaintext username
-    public String getUsername(){
-        if (this.usernameEncrypted == null || this.usernameEncrypted.isEmpty()) {
-            LoggerUtil.logWarn("Attempted to decrypt a null or empty encrypted username.");
-            throw new IllegalStateException("Encrypted username cannot be null or empty.");
-        }
-        try {
-            return encryptionUtil.decrypt(this.usernameEncrypted);
-        } catch (Exception e) {
-            LoggerUtil.logError("Error decrypting username", e);
-            throw new RuntimeException("Failed to decrypt username.", e);
-        }
-    }
-
-    public void setUsername(String username){
-        if (username == null || username.isEmpty()) {
-            LoggerUtil.logWarn("Attempted to set a null or empty username.");
-            throw new IllegalArgumentException("Username cannot be null or empty.");
-        }
-        try {
-            this.username = username;
-            this.usernameEncrypted = encryptionUtil.encrypt(username);
-            this.usernameHashed = HashUtil.sha256(username);
-            LoggerUtil.logInfo("Successfully set encrypted and hashed username.");
-        } catch (Exception e) {
-            LoggerUtil.logError("Error encrypting or hashing username", e);
-            throw new RuntimeException("Failed to encrypt or hash username.", e);
-        }
-    }
 
     public UUID getId() {
         return id;
