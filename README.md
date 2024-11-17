@@ -76,4 +76,4 @@ This project is a monolithic application for managing user accounts and transact
 - **POST /api/deposit** - Deposit this amount to logged in customer.
 - **POST /api/withdraw** - Withdraw this amount from the logged in customer.
 - **POST /api/transfer** - Transfers this amount from the logged in customer to the target customer.
-- **POST /api/logout** - Logout of the current customer.
+- **POST /api/logout** - Logout of the current customer. 
