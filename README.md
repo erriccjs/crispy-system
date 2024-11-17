@@ -69,3 +69,11 @@ This project is a monolithic application for managing user accounts and transact
 - **Backend (Java Spring Boot)**: The backend project (crispy-system) handles user and account management, with PostgreSQL for data persistence and Redis for caching and distributed locking.
 - **Frontend**: The frontend directory is included for future UI development. Initializing this directory and adding frontend assets can happen as needed.
 - **Microservices Transition**: The project structure is designed to allow for easy separation of the backend services into microservices.
+
+## API Endpoints
+
+- **POST /api/login** - Login User or Create a new user.
+- **POST /api/deposit** - Deposit this amount to logged in customer.
+- **POST /api/withdraw** - Withdraw this amount from the logged in customer.
+- **POST /api/transfer** - Transfers this amount from the logged in customer to the target customer.
+- **POST /api/logout** - Logout of the current customer. 
