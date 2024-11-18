@@ -1,5 +1,6 @@
 package com.myproject.crispysystem;
 
+import com.myproject.crispysystem.common.util.EncryptionUtil;
 import com.myproject.crispysystem.config.AppConfig;
 import com.myproject.crispysystem.users.service.UserService;
 import org.springframework.boot.SpringApplication;
@@ -12,8 +13,9 @@ import java.security.NoSuchAlgorithmException;
 @SpringBootApplication
 public class CrispySystemApplication {
 	ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-//	UserService userService = context.getBean(UserService.class);
+
 	public static void main(String[] args) throws NoSuchAlgorithmException {
 		SpringApplication.run(CrispySystemApplication.class, args);
+
 	}
 }

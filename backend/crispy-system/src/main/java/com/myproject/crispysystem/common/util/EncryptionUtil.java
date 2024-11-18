@@ -44,15 +44,27 @@ public class EncryptionUtil {
 
     public static String decrypt(String encryptedData) throws Exception {
         byte[] ivAndEncrypted = Base64.getDecoder().decode(encryptedData);
+
+        // Ensure the length is sufficient
+        if (ivAndEncrypted.length < GCM_IV_LENGTH) {
+            throw new IllegalArgumentException("Invalid encrypted data length");
+        }
+
         Cipher cipher = Cipher.getInstance(ALGORITHM);
 
+        // Extract IV
         byte[] iv = new byte[GCM_IV_LENGTH];
-        System.arraycopy(ivAndEncrypted, 0, iv, 0, iv.length);
+        System.arraycopy(ivAndEncrypted, 0, iv, 0, GCM_IV_LENGTH);
 
+        // Prepare GCMParameterSpec
         GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
         cipher.init(Cipher.DECRYPT_MODE, SECRET_KEY, spec);
 
-        byte[] decrypted = cipher.doFinal(ivAndEncrypted, iv.length, ivAndEncrypted.length - iv.length);
+        // Extract encrypted data and decrypt
+        byte[] encryptedBytes = new byte[ivAndEncrypted.length - GCM_IV_LENGTH];
+        System.arraycopy(ivAndEncrypted, GCM_IV_LENGTH, encryptedBytes, 0, encryptedBytes.length);
+
+        byte[] decrypted = cipher.doFinal(encryptedBytes);
         return new String(decrypted);
     }
 }
