@@ -1,31 +1,19 @@
 package com.myproject.crispysystem.users;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.myproject.crispysystem.users.controller.UserController;
-import com.myproject.crispysystem.users.payload.LoginRequest;
 import com.myproject.crispysystem.users.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
 
     @MockBean
     private UserService userService;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     void setUp(){

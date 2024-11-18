@@ -1,6 +1,5 @@
 package com.myproject.crispysystem.accounts.controller;
 
-import com.myproject.crispysystem.accounts.model.Transaction;
 import com.myproject.crispysystem.accounts.service.TransactionService;
 import com.myproject.crispysystem.users.payload.ApiResponse;
 import com.myproject.crispysystem.users.payload.DepositRequest;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 
 @RestController

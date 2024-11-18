@@ -1,10 +1,7 @@
 package com.myproject.crispysystem.accounts.service;
 
 import com.myproject.crispysystem.accounts.model.Account;
-import com.myproject.crispysystem.accounts.model.Transaction;
-import com.myproject.crispysystem.accounts.model.TransactionType;
 import com.myproject.crispysystem.accounts.repository.AccountRepository;
-import com.myproject.crispysystem.accounts.repository.TransactionRepository;
 import com.myproject.crispysystem.users.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
