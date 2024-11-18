@@ -1,13 +1,9 @@
-package com.myproject.crispysystem.user;
+package com.myproject.crispysystem.users;
 
-import com.myproject.crispysystem.common.util.EncryptionUtil;
-import com.myproject.crispysystem.common.util.HashUtil;
-import com.myproject.crispysystem.constants.Constants;
 import com.myproject.crispysystem.users.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;

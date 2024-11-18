@@ -27,6 +27,13 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+        String requestURI = request.getRequestURI();
+
+        // Skip filtering for login endpoint
+        if ("/api/login".equals(requestURI)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         try {
             String token = extractToken(request);
 
@@ -64,7 +71,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         response.setStatus(statusCode);
         response.setContentType("application/json");
 
-        ApiResponse<?> apiResponse = new ApiResponse<>(message);
+        ApiResponse<?> apiResponse = new ApiResponse<>(false,message);
         ObjectMapper mapper = new ObjectMapper();
         String jsonResponse = mapper.writeValueAsString(apiResponse);
 

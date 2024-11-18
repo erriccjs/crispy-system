@@ -3,24 +3,34 @@ package com.myproject.crispysystem.users.payload;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class ApiResponse<T> {
+    private boolean success;
     private String message;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String token;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
-    public ApiResponse(String message) {
+    public ApiResponse(boolean success, String message) {
+        this.success = success;
         this.message = message;
     }
 
-    public ApiResponse(String message, String token) {
+    public ApiResponse(boolean success, String message, String token) {
+        this.success = success;
         this.message = message;
         this.token = token;
     }
 
-    public ApiResponse(String message, String token, T data) {
+    public ApiResponse(boolean success, String message, String token, T data) {
+        this.success = success;
         this.message = message;
         this.token = token;
+        this.data = data;
+    }
+
+    public ApiResponse(boolean success, String message, T data) {
+        this.success = success;
+        this.message = message;
         this.data = data;
     }
 
