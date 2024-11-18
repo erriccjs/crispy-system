@@ -48,7 +48,7 @@ This project is a monolithic application for managing user accounts and transact
    cd crispysystem
    ```
 
-2. **Run the Docker services**: Ensure Docker is running and set up PostgreSQL, Redis and backend with Docker Compose:
+2. **Run Backend and database from the Docker services**: Ensure Docker is running and set up PostgreSQL, Redis and backend with Docker Compose:
 
    ```bash
    docker compose up --build -d
@@ -56,7 +56,7 @@ This project is a monolithic application for managing user accounts and transact
 
 3. **Configure the Backend Database**: The database schema will be created automatically by Spring Boot on application startup. Database settings are in application.properties.
 
-4. **Build and run the backend**:
+4. **Build and run the cli**:
 
    ```bash
    cd cli/SystemAtmCli
@@ -68,6 +68,7 @@ This project is a monolithic application for managing user accounts and transact
 - **Backend (Java Spring Boot)**: The backend project (crispy-system) handles user and account management, with PostgreSQL for data persistence and Redis for caching and distributed locking.
 - **cli**: The cli directory is the SimpleATMCLI Application.
 - **Microservices Transition**: The project structure is designed to allow for easy separation of the backend services into microservices.
+- **API Collection**: /docs/CrispySystem.postman_collection.json
 
 ## API Endpoints
 
