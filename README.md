@@ -68,6 +68,7 @@ This project is a monolithic application for managing user accounts and transact
 - **Backend (Java Spring Boot)**: The backend project (crispy-system) handles user and account management, with PostgreSQL for data persistence and Redis for caching and distributed locking.
 - **cli**: The cli directory is the SimpleATMCLI Application.
 - **Microservices Transition**: The project structure is designed to allow for easy separation of the backend services into microservices.
+- **API Collection**: /docs/CrispySystem.postman_collection.json
 
 ## API Endpoints
 
